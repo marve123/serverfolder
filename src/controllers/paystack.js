@@ -82,7 +82,7 @@ exports.getHistory = async (req, res) => {
 
     try {
         const subaccount = await db.query(
-            'SELECT subacc_code FROM users WHERE user_id = ?',
+            'SELECT subacc_code FROM users WHERE user_id = $1',
             [id]
         );
 

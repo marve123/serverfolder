@@ -1,36 +1,9 @@
 CREATE DATABASE morrnaira;
 
 
--- CREATE TABLE users (
---     user_index SERIAL,
---     user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
---     profile_image VARCHAR(600) DEFAULT 'https://res.cloudinary.com/dvcma7mex/image/upload/v1697194883/WhatsApp_Image_2023-10-13_at_12.49.09_AM_to1uao.jpg',
---     first_name VARCHAR(255) NOT NULL,
---     last_name VARCHAR(255) NOT NULL,
---     email VARCHAR(255) UNIQUE NOT NULL,
---     user_name VARCHAR(255) UNIQUE NOT NULL,
---     tel VARCHAR(11) NOT NULL,
---     user_password VARCHAR(255) NOT NULL,
---     account_num VARCHAR(11) DEFAULT '00000000000',
---     account_name VARCHAR(255) DEFAULT 'acc_name',
---     bank_name VARCHAR(255) DEFAULT 'bank_name',
---     activity_points INTEGER DEFAULT 3500,
---     referral_earnings INTEGER DEFAULT 0,
---     total_earnings INTEGER DEFAULT 0,
---     total_withdrawn INTEGER DEFAULT 0,
---     referral_code VARCHAR(255), 
---     referrer_id VARCHAR(255),
---     subacc_code VARCHAR(255),
---     rank VARCHAR(255) DEFAULT 'Bronze',
---     referrals INT,
---     is_admin BOOLEAN DEFAULT false,
---     created_at DATE DEFAULT current_date
--- );
-
-
 CREATE TABLE users (
-    user_index INT AUTO_INCREMENT PRIMARY KEY,
-    user_id CHAR(36) DEFAULT '',
+    user_index SERIAL,
+    user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     profile_image VARCHAR(600) DEFAULT 'https://res.cloudinary.com/dvcma7mex/image/upload/v1697194883/WhatsApp_Image_2023-10-13_at_12.49.09_AM_to1uao.jpg',
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -41,18 +14,19 @@ CREATE TABLE users (
     account_num VARCHAR(11) DEFAULT '00000000000',
     account_name VARCHAR(255) DEFAULT 'acc_name',
     bank_name VARCHAR(255) DEFAULT 'bank_name',
-    activity_points INT DEFAULT 3500,
-    referral_earnings INT DEFAULT 0,
-    total_earnings INT DEFAULT 0,
-    total_withdrawn INT DEFAULT 0,
+    activity_points INTEGER DEFAULT 3500,
+    referral_earnings INTEGER DEFAULT 0,
+    total_earnings INTEGER DEFAULT 0,
+    total_withdrawn INTEGER DEFAULT 0,
     referral_code VARCHAR(255), 
     referrer_id VARCHAR(255),
     subacc_code VARCHAR(255),
-    `rank` VARCHAR(255) DEFAULT 'Bronze',
+    rank VARCHAR(255) DEFAULT 'Bronze',
     referrals INT,
-    is_admin TINYINT(1) DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    is_admin BOOLEAN DEFAULT false,
+    created_at DATE DEFAULT current_date
 );
+
 
 
 ALTER TABLE users ADD last_task_execution timestamp;

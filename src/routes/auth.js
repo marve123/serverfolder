@@ -19,8 +19,6 @@ const { validateData } = require('../controllers/validateRegInfo')
 // const { sendImgToCloud } = require('../controllers/cloudinary')
 const router = Router()
 
-
-
 router.get('/get-users', getUsers) 
 router.get('/getuser/:user_id', userAuth, getUser)
 router.get('/protected', userAuth, protected)

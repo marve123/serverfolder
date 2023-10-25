@@ -23,7 +23,7 @@ exports.login = async (req, res) => {
     // }
 
     let is_admin = false;
-    if (user.is_admin === 1) {
+    if (user.is_admin === true) {
       is_admin = true;
     }
 

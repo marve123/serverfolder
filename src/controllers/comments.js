@@ -5,7 +5,7 @@ exports.createComment = async (req, res) => {
 
     try {
         const newComment = await db.query(
-            "INSERT INTO comments (post_id, author, author_pic, content) VALUES (?, ?, ?, ?) RETURNING *",
+            "INSERT INTO comments (post_id, author, author_pic, content) VALUES ($1, $2, $3, $4) RETURNING *",
             [post_id, author, author_pic, content]
         );
 
@@ -28,7 +28,7 @@ exports.getCommentForPost = async (req, res) => {
 
     try {
         const allComments = await db.query(
-            "SELECT * FROM comments WHERE post_id = ?",
+            "SELECT * FROM comments WHERE post_id = $1",
             [postId]
         );
 

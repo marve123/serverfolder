@@ -10,11 +10,11 @@ exports.register = async (req, res) => {
         let { first_name, last_name, email, user_name, tel, user_password, referral_code } = req.body;
         let is_admin = false 
         if(email === ADMIN_EMAIL && user_password === ADMIN_PASSWORD){
-            is_admin = 1
+            is_admin = true
          }
 
         // Make a GET request to get the referrerId
-        const getRefIdURL = 'http://localhost:8000/api/getref-id'; 
+        const getRefIdURL = 'http://localhost:5000/api/getref-id'; 
         const response = await axios.get(getRefIdURL, { params: { referral_code } });
         let referrerId = response.data.referrerId;
         // const referrerId = "ADMIN";
@@ -27,13 +27,13 @@ exports.register = async (req, res) => {
 
             // Insert the new user into the database
             const newUser = await db.query(
-                "INSERT INTO users (user_id, first_name, last_name, email, user_name, tel, user_password, referral_code, referrer_id, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING *",
-                [uuid(), first_name, last_name, email, user_name, tel, password, user_name, referrerId, is_admin]
+                "INSERT INTO users (first_name, last_name, email, user_name, tel, user_password, referral_code, referrer_id, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+                [first_name, last_name, email, user_name, tel, password, user_name, referrerId, is_admin]
             );
 
             // Check the referrer's generation and insert into the referral table if needed
             const referrer = await db.query(
-                "SELECT generation FROM referrals WHERE user_name = ?",
+                "SELECT generation FROM referrals WHERE user_name = $1",
                 [referrerId]
             );
 
@@ -41,7 +41,7 @@ exports.register = async (req, res) => {
 
             if (referrerGeneration <= 3) { // Change 3 to the desired generation limit
                 await db.query(
-                    "INSERT INTO referrals (user_name, referrer, generation) VALUES (?, ?, ?) RETURNING *",
+                    "INSERT INTO referrals (user_name, referrer, generation) VALUES ($1, $2, $3) RETURNING *",
                     [user_name, referrerId, referrerGeneration + 1]
                 );
             } else {

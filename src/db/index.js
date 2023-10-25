@@ -1,32 +1,12 @@
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-  user: 'postgres',
-  host: '127.0.0.1', 
+const { Pool } = require('pg')
+const pool = new Pool({
+  user: 'admin_user',
+  host: 'dpg-cksincmnfb1c73c23q6g-a',
   database: 'morrnaira',
-  password: 'Super_16.com',
-  port: 3306, 
-});
-
+  password: '9AZffheLWmLZgHEwBWSYdXlLgIWcYvmF',
+  port: 5432,
+})
 
 module.exports = {
-  query: (text, params, callback) => {
-    pool.getConnection((err, connection) => {
-      if (err) {
-        console.error('Error connecting to MySQL:', err);
-        return callback(err);
-      }
-
-      connection.query(text, params, (error, results) => {
-        connection.release(); // Release the connection to the pool.
-
-        if (error) {
-          console.error('Error executing MySQL query:', error);
-          return callback(error);
-        }
-
-        callback(null, results);
-      });
-    });
-  },
-};
+  query: (text, params) => pool.query(text, params)
+}

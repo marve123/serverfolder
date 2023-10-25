@@ -11,7 +11,7 @@ exports.getRefId = async (req, res) => {
 
     try {
         const referrer = await db.query(
-            'SELECT user_id, subacc_code FROM users WHERE referral_code = ?',
+            'SELECT user_id, subacc_code FROM users WHERE referral_code = $1',
             [referral_code]
         );
      
@@ -40,7 +40,7 @@ exports.getReferrals = async (req, res) => {
     try {
         const referrals = await db.query(
             `SELECT user_id, profile_image, user_name, first_name, last_name, rank, referrals, created_at 
-            FROM users WHERE referrer_id = ?`,
+            FROM users WHERE referrer_id = $1`,
             [userId])
 
             if(referrals.rows.length > 0) {
@@ -59,6 +59,8 @@ exports.getReferrals = async (req, res) => {
     });
     }
 }
+
+
 
 exports.getTopReferrals = async (req, res) => {
 
@@ -95,7 +97,7 @@ exports.getReferralsSize = async (req, res) => {
 
     try {
         const referrals = await db.query(
-            `SELECT * FROM users WHERE referrer_id = ?`,
+            `SELECT * FROM users WHERE referrer_id = $1`,
             [userId]) 
 
             if(referrals.rows.length > 0) {
@@ -103,23 +105,23 @@ exports.getReferralsSize = async (req, res) => {
                 const refEarnings = amount * 3800
                 if(amount >= 2){
                     await db.query(
-                        `UPDATE users SET rank = ? WHERE user_id = ?`,
+                        `UPDATE users SET rank = $1 WHERE user_id = $2`,
                         [silver, userId])
                 }
                 if(amount >= 4){
                     await db.query(
-                        `UPDATE users SET rank = ? WHERE user_id = ?`,
+                        `UPDATE users SET rank = $1 WHERE user_id = $2`,
                         [gold, userId])
                 }
                 await db.query(
-                    `UPDATE users SET referrals = ? WHERE user_id = ?`,
+                    `UPDATE users SET referrals = $1 WHERE user_id = $2`,
                     [amount, userId])
                 await db.query(
-                    `UPDATE users SET referral_earnings = ? WHERE user_id = ?`,
+                    `UPDATE users SET referral_earnings = $1 WHERE user_id = $2`,
                     [refEarnings, userId])
 
                 const points = await db.query( 
-                    `SELECT activity_points FROM users WHERE user_id = ?`,
+                    `SELECT activity_points FROM users WHERE user_id = $1`,
                     [userId])
                     let activityPoints;
                     if (points.rows.length > 0) {
@@ -129,7 +131,7 @@ exports.getReferralsSize = async (req, res) => {
                       }
                     const total = activityPoints += refEarnings
                 await db.query(
-                    `UPDATE users SET total_earnings = ? WHERE user_id = ?`,
+                    `UPDATE users SET total_earnings = $1 WHERE user_id = $2`,
                     [total, userId])
                 res.status(200).json({
                      referrals: amount

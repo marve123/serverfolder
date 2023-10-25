@@ -5,7 +5,7 @@ exports.createSponPost = async (req, res) => {
 
     try {
         const newSponPost = await db.query(
-            "INSERT INTO sponsored_posts (title, body, written_by, post_image) VALUES (?, ?, ?, ?) RETURNING *",
+            "INSERT INTO sponsored_posts (title, body, written_by, post_image) VALUES ($1, $2, $3, $4) RETURNING *",
             [title, body, written_by, post_image]
         );
 
@@ -46,7 +46,7 @@ exports.getPostById = async (req, res) => {
       const { postId } = req.params; // Assuming the URL parameter is named "postId"
   
       const post = await db.query(
-        "SELECT * FROM sponsored_posts WHERE post_id = ?",
+        "SELECT * FROM sponsored_posts WHERE post_id = $1",
         [postId]
       );
   

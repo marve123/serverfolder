@@ -7,7 +7,7 @@ exports.getUser = async (req, res) => {
             `SELECT profile_image, first_name, last_name, email, user_name, tel, 
             account_num, account_name, bank_name, activity_points, referral_earnings, 
             total_earnings, total_withdrawn, referral_code, referrer_id, subacc_code, rank 
-            FROM users WHERE user_id = ?`,
+            FROM users WHERE user_id = $1`,
             [user_id]
         );
          

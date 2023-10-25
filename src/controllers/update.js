@@ -8,7 +8,7 @@ exports.updateFirstname = async(req, res) => {
         const { first_name, user_id } =  req.body;
         
         await db.query(
-            "UPDATE users SET first_name = ? WHERE user_id = ?",
+            "UPDATE users SET first_name = $1 WHERE user_id = $2",
             [first_name, user_id]
         );
 
@@ -28,7 +28,7 @@ exports.updateLastname = async(req, res) => {
         const { last_name, user_id } =  req.body;
         
         await db.query(
-            "UPDATE users SET last_name = ? WHERE user_id = ?",
+            "UPDATE users SET last_name = $1 WHERE user_id = $2",
             [last_name, user_id]
         );
 
@@ -49,7 +49,7 @@ exports.updateEmail = async(req, res) => {
         const { email, user_id } =  req.body;
         
         await db.query(
-            "UPDATE users SET email = ?, referral_code = ? WHERE user_id = ?",
+            "UPDATE users SET email = $1, referral_code = $2 WHERE user_id = $3",
             [email, email, user_id]
         );
 
@@ -74,7 +74,7 @@ exports.updateAccountInfo = async(req, res) => {
         }
         
         await db.query(
-            "UPDATE users SET account_num = ?, account_name = ?, bank_name = ? WHERE user_id = ?",
+            "UPDATE users SET account_num = $1, account_name = $2, bank_name = $3 WHERE user_id = $4",
             [account_num, account_name, bank_name, user_id]
         );
 
@@ -95,7 +95,7 @@ exports.updateSubAccCode = async(req, res) => {
         const { subacc_code, user_id } =  req.body;
         
         await db.query(
-            "UPDATE users SET subacc_code = ? WHERE user_id = ?",
+            "UPDATE users SET subacc_code = $1 WHERE user_id = $2",
             [subacc_code, user_id]
         );
 
@@ -117,12 +117,12 @@ exports.updateTotal = async(req, res) => {
         // console.log(totalSum)
         
          await db.query(
-            "UPDATE users SET total_withdrawn = ? WHERE user_id = ?",
+            "UPDATE users SET total_withdrawn = $1 WHERE user_id = $2",
             [totalSum, userId]   
         );
 
         const response = await db.query(
-            "SELECT total_withdrawn FROM users WHERE user_id = ?",
+            "SELECT total_withdrawn FROM users WHERE user_id = $1",
             [userId]   
         );
   
@@ -142,7 +142,7 @@ exports.updateTotal = async(req, res) => {
 exports.changePassword = async(req, res) => {
     try {
         const { user_password, new_password, user_id } =  req.body;
-        const user = await db.query('SELECT * FROM users WHERE user_id = ?', [user_id]);
+        const user = await db.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
 
         const validPassword = await bcrypt.compare(user_password, user.rows[0].user_password);
 
@@ -159,7 +159,7 @@ exports.changePassword = async(req, res) => {
         const password = await bcrypt.hash(new_password, salt);
         
         await db.query(
-            "UPDATE users SET user_password = ? WHERE user_id = ?",
+            "UPDATE users SET user_password = $1 WHERE user_id = $2",
             [password, user_id]
         );
         return res.status(201).json({
@@ -180,7 +180,7 @@ exports.updateProfile = async (req, res) => {
         const {profile_image, user_id} = req.body;
 
         await db.query(
-            "UPDATE users SET profile_image = ? WHERE user_id = ?",
+            "UPDATE users SET profile_image = $1 WHERE user_id = $2",
             [profile_image, user_id]
         );
  
@@ -202,7 +202,7 @@ exports.updateActivity = async (req, res) => {
         const { user_id, amount } = req.body;
  
         // Retrieve the current activity points from the database
-        const result = await db.query("SELECT activity_points FROM users WHERE user_id = ?", 
+        const result = await db.query("SELECT activity_points FROM users WHERE user_id = $1", 
         [user_id]);
         const currentActivityPoints = result.rows[0].activity_points;
 
@@ -210,7 +210,7 @@ exports.updateActivity = async (req, res) => {
         const newActivityPoints = currentActivityPoints + amount;
 
         // Update the database with the new activity points 
-        await db.query("UPDATE users SET activity_points = ? WHERE user_id = ?", 
+        await db.query("UPDATE users SET activity_points = $1 WHERE user_id = $2", 
         [newActivityPoints, user_id]);
         let message;
         if (amount === 300) {

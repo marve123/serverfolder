@@ -15,7 +15,7 @@ const email = check('email')
 
 //check if email exists
 const emailExists = check('email').custom(async (value) => {
-  const { rows } = await db.query('SELECT * from users WHERE email = ?', [
+  const { rows } = await db.query('SELECT * from users WHERE email = $1', [
     value,
   ])
 
@@ -26,7 +26,7 @@ const emailExists = check('email').custom(async (value) => {
 
 //check if username exists
 const userNameExists = check('user_name').custom(async (value) => {
-  const { rows } = await db.query('SELECT * from users WHERE user_name = ?', [
+  const { rows } = await db.query('SELECT * from users WHERE user_name = $1', [
     value,
   ])
 
@@ -57,7 +57,7 @@ const loginFieldsCheck = check('email').custom(async (value, { req }) => {
     //   return; 
     // }
 
-    const user = await db.query('SELECT * FROM users WHERE email = ?', [value]);
+    const user = await db.query('SELECT * FROM users WHERE email = $1', [value]);
 
     if (!user.rows.length) {
       throw new Error('Email does not exist.');
