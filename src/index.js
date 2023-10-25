@@ -45,3 +45,6 @@ const appStart = () => {
 }
  
 appStart()
+
+    // "start": "node server.js",
+    // "build": "your-build-command-here",
