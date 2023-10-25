@@ -20,9 +20,7 @@ const { validateData } = require('../controllers/validateRegInfo')
 const router = Router()
 
 
-router.get('/', (req, res) => {
-    res.send({message: 'Welcome to the API'})}
-)
+
 router.get('/get-users', getUsers) 
 router.get('/getuser/:user_id', userAuth, getUser)
 router.get('/protected', userAuth, protected)
