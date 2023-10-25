@@ -11,10 +11,14 @@ require('./middlewares/passport-middleware')
 // middlewares 
 app.use(express.json()) 
 app.use(cookieParser())
+// app.use(cors({
+//     origin: CLIENT_URL, 
+//     credentials: true
+// }))
 app.use(cors({
-    origin: CLIENT_URL, 
-    credentials: true
-}))
+    origin: '*',
+    credentials: true,
+  }));
 app.use(passport.initialize()) 
 // app.use((req, res, next) => { 
 //     res.setHeader('Access-Control-Allow-Origin', 'https://morrnaire.tech');
