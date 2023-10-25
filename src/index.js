@@ -40,7 +40,7 @@ app.use('/api', authRoutes)
 const appStart = () => {
     try {
         app.listen(PORT, () => {
-            console.log(`The app is running at https://localhost:${PORT}`);
+            console.log(`The app is running at http://localhost:${PORT}`);
         })
     } catch (error) {
         console.log(`Error: ${error.message}`)
