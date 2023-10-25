@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-    origin: [CLIENT_URL, 'http://localhost:5173'], // Specify the allowed origins as an array
+    origin: [CLIENT_URL, 'http://localhost:5173', 'https://morrnaire.tech'], // Specify the allowed origins as an array
     credentials: true,
   }));
 app.use(passport.initialize()) 
