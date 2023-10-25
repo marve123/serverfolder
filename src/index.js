@@ -11,15 +11,18 @@ require('./middlewares/passport-middleware')
 // middlewares 
 app.use(express.json()) 
 app.use(cookieParser())
-app.use(cors({origin: CLIENT_URL, credentials: true}))
+app.use(cors({
+    origin: CLIENT_URL, 
+    credentials: true
+}))
 app.use(passport.initialize()) 
-app.use((req, res, next) => { 
-    res.setHeader('Access-Control-Allow-Origin', 'https://morrnaire.tech');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization'); 
-    res.setHeader('Access-Control-Allow-Credentials', 'true'); 
-    next(); 
-  }); 
+// app.use((req, res, next) => { 
+//     res.setHeader('Access-Control-Allow-Origin', 'https://morrnaire.tech');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization'); 
+//     res.setHeader('Access-Control-Allow-Credentials', 'true'); 
+//     next(); 
+//   }); 
 
   app.get('/', (req, res) => {
     res.send({message: 'Welcome to the API'})}
