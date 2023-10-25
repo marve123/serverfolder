@@ -48,8 +48,8 @@ CREATE TABLE sponsored_posts (
     title VARCHAR(255) NOT NULL,
     body TEXT NOT NULL,
     written_by VARCHAR(255) NOT NULL,
-    post_image VARCHAR(600) DEFAULT 'https://res.cloudinary.com/dvcma7mex/image/upload/v1696805589/wrkrqsiphftnzgsvrodj.png'
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    post_image VARCHAR(600) DEFAULT 'https://res.cloudinary.com/dvcma7mex/image/upload/v1696805589/wrkrqsiphftnzgsvrodj.png',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE comments (

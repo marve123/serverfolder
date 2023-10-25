@@ -2,7 +2,7 @@ const db = require('../db')
  
 exports.getRefLink = (req, res) => {
     const user_name = req.params.user_name;
-    const referralLink = `http://localhost:5173/register/${user_name}`;
+    const referralLink = `https://morrnaira-server.onrender.com/register/${user_name}`;
     res.json({ referralLink });
 };
  
