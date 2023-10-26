@@ -55,7 +55,7 @@ exports.createSub = async (req, res) => {
 
         const response = await axios.post('https://api.paystack.co/subaccount', subDetails, {
             headers: {
-                "Authorization": SECRET_KEY,
+                "Authorization": "Bearer sk_test_d1b526044248fef9edb0bb46c0eea9ed714a49c7",
                 'Content-Type': 'application/json'
             } 
         });
@@ -99,7 +99,7 @@ exports.getHistory = async (req, res) => {
 
         const settlements = await axios.get(`https://api.paystack.co/settlement/?subaccount=${data}`, {
             headers: {
-                "Authorization": SECRET_KEY,
+                "Authorization": "Bearer sk_test_d1b526044248fef9edb0bb46c0eea9ed714a49c7",
             }
         });
  
