@@ -23,7 +23,7 @@ exports.getRefId = async (req, res) => {
         } else {
             // Handle the case where no user with the referral code was found
             // console.log('Default admin referral code used.');
-            res.json({ referrerId: "66278c7a-d281-4a05-bd2a-ee88656bc83d" });
+            res.json({ referrerId: "095bd28f-65b2-48e4-bfd9-62790e1e14dc" });
         }
     } catch (error) {
         // Handle any database query errors
