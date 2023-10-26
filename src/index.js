@@ -16,6 +16,7 @@ app.use(cors({
     origin: [CLIENT_URL, 'http://localhost:5173/', 'https://morrnaire.tech/'], // Specify the allowed origins as an array
     credentials: true,
   }));
+  
 app.use(passport.initialize()) 
 // app.use((req, res, next) => { 
 //     res.setHeader('Access-Control-Allow-Origin', 'https://morrnaire.tech');
