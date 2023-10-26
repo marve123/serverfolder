@@ -20,7 +20,7 @@ exports.getRef = async (req, res) => {
         // console.log(gateway)
         // console.log(amount)
 
-        if (status !== "success" || gateway !== "Approved" || amount !== 10000) {
+        if (status !== "success" || gateway !== "Approved" || amount !== 500000) {
             return res.status(400).json({
                 success: false,
                 message: 'Invalid Payment',
