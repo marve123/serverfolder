@@ -16,7 +16,7 @@ exports.createComment = async (req, res) => {
             
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })  
@@ -38,7 +38,7 @@ exports.getCommentForPost = async (req, res) => {
             
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })  

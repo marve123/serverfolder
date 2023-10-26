@@ -110,7 +110,7 @@ exports.getHistory = async (req, res) => {
             sub: settlements.data.data[0].subaccount
         });
     } catch (error) {
-        console.error(error.message);
+        // console.error(error.message);
         return res.status(500).json({
             error: error.message
         })

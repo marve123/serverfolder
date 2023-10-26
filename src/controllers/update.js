@@ -17,7 +17,7 @@ exports.updateFirstname = async(req, res) => {
             message: 'First name updated!'
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })  
@@ -37,7 +37,7 @@ exports.updateLastname = async(req, res) => {
             message: 'Last name updated!'
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })
@@ -58,7 +58,7 @@ exports.updateEmail = async(req, res) => {
             message: 'Email updated!'
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })
@@ -83,7 +83,7 @@ exports.updateAccountInfo = async(req, res) => {
             message: 'Account Information Updated!'
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })
@@ -104,7 +104,7 @@ exports.updateSubAccCode = async(req, res) => {
             message: 'SubAccount updated!'
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })  
@@ -131,7 +131,7 @@ exports.updateTotal = async(req, res) => {
             total: response.rows[0].total_withdrawn,
         }) 
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })  
@@ -167,7 +167,7 @@ exports.changePassword = async(req, res) => {
             message: 'Password changed!'
         })
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         })
@@ -189,7 +189,7 @@ exports.updateProfile = async (req, res) => {
             message: 'Profile Picture Updated!'
         });
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return res.status(500).json({
             error: error.message
         });
@@ -228,7 +228,7 @@ exports.updateActivity = async (req, res) => {
             newActivityPoints: newActivityPoints // Optionally return the new value 
         });
     } catch (error) {
-        console.log(error.message); 
+        // console.log(error.message); 
         return res.status(500).json({
             error: error.message
         });

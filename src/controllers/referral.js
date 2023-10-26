@@ -53,7 +53,7 @@ exports.getReferrals = async (req, res) => {
             }
         
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
     return res.status(500).json({
       error: error.message,
     });
@@ -81,7 +81,7 @@ exports.getTopReferrals = async (req, res) => {
             }
         
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
     return res.status(500).json({
       error: error.message,
     });
@@ -103,12 +103,12 @@ exports.getReferralsSize = async (req, res) => {
             if(referrals.rows.length > 0) {
                 const amount = referrals.rows.length
                 const refEarnings = amount * 3800
-                if(amount >= 2){
+                if(amount >= 200){
                     await db.query(
                         `UPDATE users SET rank = $1 WHERE user_id = $2`,
                         [silver, userId])
                 }
-                if(amount >= 4){
+                if(amount >= 500){
                     await db.query(
                         `UPDATE users SET rank = $1 WHERE user_id = $2`,
                         [gold, userId])
@@ -142,7 +142,7 @@ exports.getReferralsSize = async (req, res) => {
             }
         
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
     return res.status(500).json({
       error: error.message,
     });
