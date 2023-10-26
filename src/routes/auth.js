@@ -10,7 +10,7 @@ const { logout } = require('../controllers/logout')
 const { updateFirstname, updateLastname, 
     updateEmail, updateAccountInfo, changePassword, 
     updateActivity, updateProfile, updateSubAccCode, updateTotal } = require('../controllers/update')
-const { getRefLink, getRefId, getReferrals, getReferralsSize, getTopReferrals } = require('../controllers/referral')
+const { getRefId, getReferrals, getReferralsSize, getTopReferrals } = require('../controllers/referral')
 const { getRef, createSub, getHistory } = require('../controllers/paystack')
 const { createSponPost, getAllPosts, getPostById } = require('../controllers/sponosredpost')
 const { createComment, getCommentForPost } = require('../controllers/comments')
@@ -47,7 +47,7 @@ router.get('/getref/', getRef)
 router.get('/getrefhistory/:id', getHistory)
 router.get('/gettopref', getTopReferrals)
 router.get('/getreferrals/:userId', getReferrals)
-router.get('/getreferralssize/:userId', getReferralsSize) 
+router.get('/getreferralssize/:userId', getReferralsSize)
  
  
 module.exports = router
