@@ -1,10 +1,10 @@
 const db = require('../db')
  
-exports.getRefLink = (req, res) => {
-    const user_name = req.params.user_name;
-    const referralLink = `https://morrnaira-server.onrender.com/register/${user_name}`;
-    res.json({ referralLink });
-};
+// exports.getRefLink = (req, res) => {
+//     const user_name = req.params.user_name;
+//     const referralLink = `https://morrnaira-server.onrender.com/register/${user_name}`;
+//     res.json({ referralLink });
+// };
  
 exports.getRefId = async (req, res) => {
     const { referral_code } = req.query; // Use req.query to get the query parameter
