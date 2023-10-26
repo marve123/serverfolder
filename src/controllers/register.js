@@ -16,8 +16,8 @@ exports.register = async (req, res) => {
         // Make a GET request to get the referrerId
         const getRefIdURL = 'https://morrnaira-server.onrender.com/api/getref-id'; 
         const response = await axios.get(getRefIdURL, { params: { referral_code } });
-        let referrerId = response.data.referrerId;
-        // const referrerId = "ADMIN";
+        // let referrerId = response.data.referrerId;
+        const referrerId = "ADMIN";
         
 
             // Hash the user's password
