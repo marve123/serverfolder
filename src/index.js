@@ -14,7 +14,7 @@ app.use(cookieParser())
 
 
 app.use(cors({
-    origin: CLIENT_URL || 'http://localhost:5173' || 'https://www.morrnaire.tech',
+    origin: [CLIENT_URL, 'http://localhost:5173', 'https://www.morrnaire.tech'],
     credentials: true,
   }));
 
