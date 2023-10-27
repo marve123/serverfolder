@@ -5,15 +5,15 @@ const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const cors = require('cors')
 
-// passport 
+// passport
 require('./middlewares/passport-middleware')
 
-// middlewares 
+// middlewares
 app.use(express.json()) 
 app.use(cookieParser())
 
 app.use(cors({
-    origin: [CLIENT_URL, 'http://localhost:5173/', 'https://morrnaire.tech/'], // Specify the allowed origins as an array
+    origin: [CLIENT_URL, 'http://localhost:5173/', 'https://morrnaire.tech/'],
     credentials: true,
   }));
 

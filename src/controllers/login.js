@@ -42,6 +42,7 @@ exports.login = async (req, res) => {
       user: user.user_id,
       isAdmin: is_admin,
     });
+
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
