@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-    origin: [CLIENT_URL, 'http://localhost:5173/', 'https://morrnaire.tech/'],
+    origin: [CLIENT_URL, 'http://localhost:5173'],
     credentials: true,
   }));
 
