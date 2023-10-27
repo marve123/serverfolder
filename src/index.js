@@ -11,11 +11,15 @@ require('./middlewares/passport-middleware')
 // middlewares 
 app.use(express.json()) 
 app.use(cookieParser())
+// my app
 
-app.use(cors({
-    origin: [CLIENT_URL, 'http://localhost:5173', 'https://morrnaire.tech'], 
-    credentials: true,
-  }));
+// const apep = 'mmmm'
+
+// app.use(cors({
+//     origin: CLIENT_URL,
+//     credentials: true,
+//   }));
+app.use(cors())
 
 app.use(passport.initialize()) 
 // app.use((req, res, next) => { 
