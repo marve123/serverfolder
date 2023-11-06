@@ -6,7 +6,7 @@ exports.getUser = async (req, res) => {
         const selectUser = await db.query(
             `SELECT profile_image, first_name, last_name, email, user_name, tel, 
             account_num, account_name, bank_name, activity_points, referral_earnings, 
-            total_earnings, total_withdrawn, referral_code, referrer_id, subacc_code, rank 
+            total_earnings, total_withdrawn, referral_code, referrals, referrer_id, subacc_code, rank 
             FROM users WHERE user_id = $1`,
             [user_id]
         );
