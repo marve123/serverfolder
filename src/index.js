@@ -14,7 +14,7 @@ app.use(cookieParser())
 
 
 app.use(cors({
-    origin: [CLIENT_URL, 'http://localhost:5173', 'https://www.morrnaire.tech', 'https://morrnaire.netlify.app/'],
+    origin: [CLIENT_URL, 'http://localhost:5173', 'https://www.morrnaire.tech', 'https://morrnaire.netlify.app', 'https://www.morrnaire.netlify.app'],
     credentials: true,
   }));
 
